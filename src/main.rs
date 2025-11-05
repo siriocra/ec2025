@@ -24,6 +24,8 @@ fn read_file(filename:String) -> String {
 }
 
 fn main() {
-    let input = read_file("everybody_codes_e2025_q01_p1.txt".to_string());
-    day1::part1(input);
+    let test_file = "test.txt";
+    let d1_file = "everybody_codes_e2025_q01_p3.txt";
+    let input = read_file(d1_file.to_string());
+    day1::part3(input);
 }

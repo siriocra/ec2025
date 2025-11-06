@@ -9,7 +9,7 @@ fn read_file(filename:String) -> String {
     let display = path.display();
 
     // Open the path in read-only mode, returns `io::Result<File>`
-    let mut file = match File::open(&path) {
+    let mut file = match File::open(path) {
         Err(why) => panic!("couldn't open {}: {}", display, why),
         Ok(file) => file,
     };

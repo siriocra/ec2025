@@ -1,4 +1,5 @@
 mod day1;
+mod day2;
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
@@ -28,4 +29,7 @@ fn main() {
     let d1_file = "everybody_codes_e2025_q01_p3.txt";
     let input = read_file(d1_file.to_string());
     day1::part3(input);
+    let d2_file = "everybody_codes_e2025_q02_p3.txt";
+    let input = read_file(d2_file.to_string());
+    day2::part3(input);
 }

@@ -3,6 +3,7 @@ mod day2;
 mod day3;
 mod quest4;
 mod quest5;
+mod quest6;
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
@@ -40,8 +41,11 @@ fn main() {
     println!("{}", day3::part3(input));
     let q4_file = "everybody_codes_e2025_q04_p3.txt";
     let input = read_file(q4_file.to_string());
-    println!("{}", quest4::part3(input));*/
+    println!("{}", quest4::part3(input));
     let q5_file = "everybody_codes_e2025_q05_p3.txt";
     let input = read_file(q5_file.to_string());
-    println!("{}", quest5::part3(input));
+    println!("{}", quest5::part3(input));*/
+    let q6_file = "everybody_codes_e2025_q06_p3.txt";
+    let input = read_file(q6_file.to_string());
+    println!("{}", quest6::part3(input));
 }

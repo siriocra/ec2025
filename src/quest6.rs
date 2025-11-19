@@ -141,9 +141,9 @@ mod tests {
     fn test_part3() {
         let str = String::from("AABCBABCABCabcabcABCCBAACBCa");
         let mut long_str = String::new();
-        for _ in 0..1000 {
+        for _ in 0..100 {
             long_str += str.as_str();
         }
-        assert_eq!(calc_mentors(long_str, 1000, 1), 3442321);
+        assert_eq!(calc_mentors(long_str, 1000, 10), 3442321);
     }
 }

@@ -57,7 +57,7 @@ fn main() {
     let q8_file = "everybody_codes_e2025_q08_p3.txt";
     let input = read_file(q8_file.to_string());
     println!("{}", quest8::part3(input));*/
-    let q9_file = "everybody_codes_e2025_q09_p2.txt";
+    let q9_file = "everybody_codes_e2025_q09_p3.txt";
     let input = read_file(q9_file.to_string());
-    println!("{}", quest9::part2(input));
+    println!("{}", quest9::part3(input));
 }

@@ -12,6 +12,7 @@ mod quest11;
 mod quest12;
 mod quest13;
 mod quest14;
+mod quest15;
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
@@ -37,47 +38,7 @@ fn read_file(filename:String) -> String {
 }
 
 fn main() {
-    /*let test_file = "test.txt";
-    let d1_file = "everybody_codes_e2025_q01_p3.txt";
-    let input = read_file(d1_file.to_string());
-    day1::part3(input);
-    let d2_file = "everybody_codes_e2025_q02_p3.txt";
-    let input = read_file(d2_file.to_string());
-    day2::part3(input);
-    let d3_file = "everybody_codes_e2025_q03_p3.txt";
-    let input = read_file(d3_file.to_string());
-    println!("{}", day3::part3(input));
-    let q4_file = "everybody_codes_e2025_q04_p3.txt";
-    let input = read_file(q4_file.to_string());
-    println!("{}", quest4::part3(input));
-    let q5_file = "everybody_codes_e2025_q05_p3.txt";
-    let input = read_file(q5_file.to_string());
-    println!("{}", quest5::part3(input));
-    let q6_file = "everybody_codes_e2025_q06_p3.txt";
-    let input = read_file(q6_file.to_string());
-    println!("{}", quest6::part3(input));
-    let q7_file = "everybody_codes_e2025_q07_p3.txt";
-    let input = read_file(q7_file.to_string());
-    println!("{}", quest7::part3(input));
-    let q8_file = "everybody_codes_e2025_q08_p3.txt";
-    let input = read_file(q8_file.to_string());
-    println!("{}", quest8::part3(input));
-    let q9_file = "everybody_codes_e2025_q09_p3.txt";
-    let input = read_file(q9_file.to_string());
-    println!("{}", quest9::part3(input));
-    let q10_file = "everybody_codes_e2025_q10_p3.txt";
-    let input = read_file(q10_file.to_string());
-    println!("{}", quest10::part3(input));
-    let q11_file = "everybody_codes_e2025_q11_p3.txt";
-    let input = read_file(q11_file.to_string());
-    println!("{}", quest11::part3(input));
-    let q12_file = "everybody_codes_e2025_q12_p3.txt";
-    let input = read_file(q12_file.to_string());
-    println!("{}", quest12::part3(input));
-    let q13_file = "everybody_codes_e2025_q13_p3.txt";
-    let input = read_file(q13_file.to_string());
-    println!("{}", quest13::part3(input));*/
-    let q14_file = "everybody_codes_e2025_q14_p3.txt";
-    let input = read_file(q14_file.to_string());
-    println!("{}", quest14::part3(input));
+    let q15_file = "everybody_codes_e2025_q15_p3.txt";
+    let input = read_file(q15_file.to_string());
+    println!("{}", quest15::part1(input));
 }

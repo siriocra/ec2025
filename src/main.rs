@@ -15,6 +15,7 @@ mod quest14;
 mod quest15;
 mod quest16;
 mod quest17;
+mod quest18;
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
@@ -40,7 +41,7 @@ fn read_file(filename:String) -> String {
 }
 
 fn main() {
-    let q17_file = "everybody_codes_e2025_q17_p2.txt";
-    let input = read_file(q17_file.to_string());
-    println!("{}", quest17::part2(input));
+    let q18_file = "everybody_codes_e2025_q18_p2.txt";
+    let input = read_file(q18_file.to_string());
+    println!("{}", quest18::part2(input));
 }

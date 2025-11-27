@@ -61,32 +61,29 @@ fn parse_input(input: String) -> (Graph, Vec<Vec<i32>>) {
 }
 
 fn activate(plant: i32, graph: &mut Graph, test: Option<&Vec<i32>>) -> i32 {
-    let mut queue = PriorityQueue::new();
     let mut cur_energy = HashMap::new();
     if test.is_none() {
-        queue.push(plant, Reverse(1));
         cur_energy.insert(plant, 1);
     } else {
         for (new_v, thickness) in graph.edges.get(&0).unwrap() {
             if test.unwrap()[(*new_v - 1) as usize] == 1 {
                 *cur_energy.entry(*new_v).or_insert(0) += *thickness;
-                if cur_energy.get(new_v).unwrap() >= graph.vertices.get(new_v).unwrap() {
+                /*if cur_energy.get(new_v).unwrap() >= graph.vertices.get(new_v).unwrap() {
                     queue.push(*new_v, Reverse(*cur_energy.get(new_v).unwrap()));
-                }
+                }*/
             }
         }
     }
-    while !queue.is_empty() {
-        let (v, _) = queue.pop().unwrap();
-        if *cur_energy.get(&v).unwrap() < *graph.vertices.get(&v).unwrap() {
+    for v in 0i32..graph.vertices.len() as i32 {
+        if *cur_energy.entry(v).or_insert(0) < *graph.vertices.get(&v).unwrap() {
             cur_energy.entry(v).and_modify(|e| { *e = 0 } );
             continue;
         }
         for (new_v, thickness) in graph.edges.entry(v).or_insert(Vec::new()) {
             *cur_energy.entry(*new_v).or_insert(0) += *thickness * cur_energy.get(&v).unwrap();
-            if cur_energy.get(new_v).unwrap() >= graph.vertices.get(new_v).unwrap() {
+            /*if cur_energy.get(new_v).unwrap() >= graph.vertices.get(new_v).unwrap() {
                 queue.push(*new_v, Reverse(*cur_energy.get(new_v).unwrap()));
-            }
+            }*/
         }
     }
     let last_plant = graph.last_plant;

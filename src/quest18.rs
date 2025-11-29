@@ -94,6 +94,27 @@ fn activate(plant: i32, graph: &mut Graph, test: Option<&Vec<i32>>) -> i32 {
     return 0;
 }
 
+fn find_min_path(v: i32, cur_energy: i32, graph: &Graph, test: Option<&Vec<i32>>) -> (i32, Vec<i32>) {
+    if v == graph.last_plant {
+        return (cur_energy, vec![v]);
+    } else {
+        let mut min_energy = 1_000_000_000;
+        let mut min_path = Vec::new();
+        for (new_v, thickness) in graph.edges.get(&v).unwrap() {
+            if v == 0 && test.is_some() && test.unwrap()[(*new_v - 1) as usize] == 0 {
+                continue;
+            }
+            let (energy, mut path) = find_min_path(*new_v, cur_energy * *thickness, graph, test);
+            if min_energy > energy {
+                min_energy = energy;
+                path.push(v);
+                min_path = path;
+            }
+        }
+        return (min_energy, min_path);
+    }
+}
+
 pub fn part1(input: String) -> i32 {
     let (mut graph, _) = parse_input(input);
     return activate(0, &mut graph, Option::None);
@@ -106,6 +127,33 @@ pub fn part2(input: String) -> i64 {
         let energy = activate(0, &mut graph, Some(&test));
         println!("{}", energy);
         ans += energy as i64;
+    }
+    return ans;
+}
+
+pub fn part3(input: String) -> i64 {
+    let (mut graph, test_cases) = parse_input(input);
+    let mut optimal = vec![1; test_cases[0].len()];
+    let mut optimal_energy = activate(0, &mut graph, Some(&optimal));
+    loop {
+        let (energy, min_path) = find_min_path(0, 1, &mut graph, Some(&optimal));
+        let remove_v = min_path[min_path.len() - 2];
+        optimal[(remove_v - 1) as usize] = 0;
+        let changed_energy = activate(0, &mut graph, Some(&optimal));
+        if changed_energy >= optimal_energy {
+            optimal_energy = changed_energy;
+        } else {
+            optimal[(remove_v - 1) as usize] = 1;
+            break;
+        }
+    }
+    
+    let mut ans: i64 = 0;
+    for test in test_cases {
+        let energy = activate(0, &mut graph, Some(&test));
+        if energy > 0 {
+            ans += (optimal_energy - energy) as i64;
+        }
     }
     return ans;
 }
@@ -170,5 +218,42 @@ Plant 6 with thickness 150:
 1 0 1
 0 0 1
 0 1 1")), 324);
+    }
+
+    #[test]
+    fn test_part3() {
+        assert_eq!(part3(String::from("Plant 1 with thickness 1:
+- free branch with thickness 1
+
+Plant 2 with thickness 1:
+- free branch with thickness 1
+
+Plant 3 with thickness 1:
+- free branch with thickness 1
+
+Plant 4 with thickness 1:
+- free branch with thickness 1
+
+Plant 5 with thickness 8:
+- branch to Plant 1 with thickness -8
+- branch to Plant 2 with thickness 11
+- branch to Plant 3 with thickness 13
+- branch to Plant 4 with thickness -7
+
+Plant 6 with thickness 7:
+- branch to Plant 1 with thickness 14
+- branch to Plant 2 with thickness -9
+- branch to Plant 3 with thickness 12
+- branch to Plant 4 with thickness 9
+
+Plant 7 with thickness 23:
+- branch to Plant 5 with thickness 17
+- branch to Plant 6 with thickness 18
+
+
+0 1 0 0
+0 1 0 1
+0 1 1 1
+1 1 0 1")), 946);
     }
 }

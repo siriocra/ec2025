@@ -41,7 +41,7 @@ fn read_file(filename:String) -> String {
 }
 
 fn main() {
-    let q17_file = "everybody_codes_e2025_q17_p3.txt";
-    let input = read_file(q17_file.to_string());
-    println!("{}", quest17::part3(input));
+    let q18_file = "everybody_codes_e2025_q18_p3.txt";
+    let input = read_file(q18_file.to_string());
+    println!("{}", quest18::part3(input));
 }

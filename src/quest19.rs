@@ -70,6 +70,7 @@ pub fn part1(input: String) -> i64 {
 }
 
 pub fn part2(input: String) -> i64 {
+    // Part 3 same as Part 2
     let openings = parse_input(input);
     // Already sorted by x
     let mut cur_x = 0;
